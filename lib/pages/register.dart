@@ -1,11 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
-
-
 
   @override
   State<MyRegister> createState() => _MyRegisterState();
@@ -14,27 +15,29 @@ class MyRegister extends StatefulWidget {
 class _MyRegisterState extends State<MyRegister> {
 
   final firebaseAuth = FirebaseAuth.instance;
+  final passController = TextEditingController();
+  final emailController = TextEditingController();
+
+  String email = '';
+  String pass = '';
 
   @override
   Widget build(BuildContext context) {
 
-    firebaseAuth.signOut();
 
-    String email = '';
-    String pass = '';
 
-    firebaseAuth
-        .userChanges()
-        .listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
+    // firebaseAuth
+    //     .userChanges()
+    //     .listen((User? user) {
+    //   if (user == null) {
+    //     print('User is currently signed out!');
+    //   } else {
+    //     print('User is signed in!');
+    //   }
+    // });
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/register.png'),
           fit: BoxFit.cover,
@@ -47,7 +50,7 @@ class _MyRegisterState extends State<MyRegister> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.keyboard_arrow_left),
+            icon: const Icon(Icons.keyboard_arrow_left),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -56,9 +59,9 @@ class _MyRegisterState extends State<MyRegister> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 40, top: 50),
+              padding: const EdgeInsets.only(left: 40, top: 50),
               child: Text(
-                'Register \n    Account',
+                'Register \nAccount',
                 style: GoogleFonts.ubuntu(
                   color: Colors.white,
                   fontSize: 33,
@@ -74,7 +77,7 @@ class _MyRegisterState extends State<MyRegister> {
                 ),
                 child: Column(
                   children: [
-                    TextField(
+/*                    TextField(
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -92,85 +95,33 @@ class _MyRegisterState extends State<MyRegister> {
                             borderRadius: BorderRadius.circular(10),
                           )
                       ),
-                    ),
-                    SizedBox(
+                    )*/
+                    const SizedBox(
                       height: 30,
                     ),
                     TextField(
-                      onChanged: (value) {
-                        email = value;
-                      },
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Email/Phone No',
-                          hintStyle: GoogleFonts.ubuntu(
-                            color: Colors.white,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
+                      controller: emailController,
+                      decoration: getDecoration('Email'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    TextField(
+                    TextFormField(
+                      controller: passController,
+                      obscureText: true,
+                      decoration: getDecoration('Password'),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    /*TextField(
                       onChanged: (value) {
                         pass = value;
                       },
                       obscureText: true,
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Password',
-                          hintStyle: GoogleFonts.ubuntu(
-                            color: Colors.white,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    TextField(
-                      onChanged: (value) {
-                        pass = value;
-                      },
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Confirm Password',
-                          hintStyle: GoogleFonts.ubuntu(
-                            color: Colors.white,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
-                    ),
-                    SizedBox(
+                      decoration: getDecoration('Confirm Password'),
+                    ),*/
+                    const SizedBox(
                       height: 40,
                     ),
                     Row(
@@ -186,12 +137,32 @@ class _MyRegisterState extends State<MyRegister> {
                         ),
                         CircleAvatar(
                           radius: 30,
-                          backgroundColor: Color(0xff4c505b),
+                          backgroundColor: const Color(0xff4c505b),
                           child: IconButton(
                             color: Colors.white,
                             onPressed: () async {
-                              Navigator.pushNamed(context, '/sign_in');
+
+                              print(passController.text);
+                              print(emailController.text);
                               try {
+                                await firebaseAuth.createUserWithEmailAndPassword(
+                                    email: emailController.text, password: passController.text).then((value){
+                                  print('user');
+
+                                  print(value.user);
+                                }).onError((error, stackTrace) {
+                                  print('error');
+                                  print(error);
+                                });
+
+
+                              } catch (e) {
+                                print('catch');
+
+                                print(e);
+                              }
+                              // Navigator.pushNamed(context, '/sign_in');
+                              /*try {
                                 final credential = await firebaseAuth.createUserWithEmailAndPassword(
                                   email: email,
                                   password: pass,
@@ -199,21 +170,19 @@ class _MyRegisterState extends State<MyRegister> {
                                 print(credential);
                                 // Navigator.pushNamed(context, '/home');
                               } on FirebaseAuthException catch (e) {
-                                if (e.code == 'weak-password') {
-                                  print('The password provided is too weak.');
-                                } else if (e.code == 'email-already-in-use') {
+                                if (e.code == 'email-already-in-use') {
                                   print('The account already exists for that email.');
                                 }
                               } catch (e) {
                                 print(e);
-                              }
+                              }*/
                             },
-                            icon: Icon(Icons.arrow_forward),
+                            icon: const Icon(Icons.arrow_forward),
                           ),
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Row(
@@ -250,6 +219,22 @@ class _MyRegisterState extends State<MyRegister> {
           ],
         ),
       ),
+    );
+  }
+
+  InputDecoration getDecoration(String fieldName) {
+    final border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(color: Colors.black));
+    return InputDecoration(
+
+        focusedBorder: border,
+        enabledBorder: border,
+        hintText: fieldName,
+        hintStyle: GoogleFonts.ubuntu(
+          color: Colors.white,
+        ),
+        border: border
     );
   }
 

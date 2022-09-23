@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
@@ -20,36 +21,46 @@ class _Otp_VerifyState extends State<Otp_Verify> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          color: Colors.grey[900],
+          color: Colors.grey[600],
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.keyboard_arrow_left),
+          icon: Icon(Icons.arrow_circle_left_outlined),
         ),
-        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
           'Verification',
-          style: TextStyle(
+          style: GoogleFonts.ubuntu(
             color: Colors.black,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(30, 80, 30, 0),
+        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
         child: Column(
           children: [
             Text(
+                'Please enter the code that was sent to your email or phone number',
+                style: TextStyle(
+                  color: Colors.grey[700],
+                  fontSize: 16
+                ),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Text(
                 'Enter Verification Code',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
+              style: GoogleFonts.ubuntu(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w600,
                   fontSize: 17
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 20,
             ),
             OTPTextField(
               controller: otpController,
@@ -64,19 +75,30 @@ class _Otp_VerifyState extends State<Otp_Verify> {
               textFieldAlignment: MainAxisAlignment.spaceAround,
               fieldStyle: FieldStyle.box,
               onChanged: (pin) {
-                //print("Changed: " + pin);
+                print("Changed: " + pin);
               },
               onCompleted: (pin) {
-                //print("Completed: " + pin);
+                print("Completed: " + pin);
               },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("If you didn't receive a code!"),
+                Text(
+                    "If you didn't receive a code!",
+                  style: GoogleFonts.ubuntu(
+                    color: Colors.grey,
+                  ),
+                ),
                 TextButton(
                   onPressed: () {},
-                    child: Text('Resend'),
+                    child: Text(
+                        'Resend',
+                      style: GoogleFonts.ubuntu(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.redAccent,
+                      ),
+                    ),
                 ),
               ],
             ),
@@ -88,10 +110,9 @@ class _Otp_VerifyState extends State<Otp_Verify> {
               height: 60,
               child: TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: Colors.green,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
-                    side: BorderSide(color: Colors.red),
                   ),
                 ),
                 onPressed: () {
@@ -99,9 +120,10 @@ class _Otp_VerifyState extends State<Otp_Verify> {
                 },
                 child: Text(
                   'Verify',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 17,
+                  style: GoogleFonts.ubuntu(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
                 ),
               ),

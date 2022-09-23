@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Department_Greet extends StatefulWidget {
   const Department_Greet({Key? key}) : super(key: key);
@@ -14,18 +15,19 @@ class _Department_GreetState extends State<Department_Greet> {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         backgroundColor: Color(0xff4c505b),
-        title: const Text(
-            'Welcome',
-          style: TextStyle(
+        title: Text(
+          'Welcome',
+          style: GoogleFonts.ubuntu(
             fontSize: 40,
-            color: Colors.white,
+            color: Colors.green,
+            fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -36,19 +38,49 @@ class _Department_GreetState extends State<Department_Greet> {
               ),
             ),
             const Divider(
-              height: 90.0,
-              color: Colors.white70,
+              height: 80.0,
+              color: Colors.redAccent,
             ),
-            const Text(
-                'Welcome To Department of Computer Science & Information Technology',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 2.0,
-                  fontSize: 28.0,
-                )
+            Column(
+              children: [
+                Text(
+                    'Dear! Mohd Kasim',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.ubuntu(
+                      color: Colors.blueGrey,
+                      letterSpacing: 2.0,
+                      fontSize: 28.0,
+                    )
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    'Welcome To',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.ubuntu(
+                      color: Colors.grey,
+                      letterSpacing: 2.0,
+                      fontSize: 28.0,
+                    )
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    'Department of Computer Science & Information Technology',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.ubuntu(
+                      color: Colors.blueGrey,
+                      letterSpacing: 2.0,
+                      fontSize: 28.0,
+                    )
+                ),
+              ],
             ),
-            const SizedBox(height: 50),
+            SizedBox(
+                height: 30,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -57,9 +89,7 @@ class _Department_GreetState extends State<Department_Greet> {
                   backgroundColor: Color(0xff4c505b),
                   child: IconButton(
                     color: Colors.white,
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                    },
+                    onPressed: () {},
                     icon: Icon(Icons.arrow_forward),
                   ),
                 ),

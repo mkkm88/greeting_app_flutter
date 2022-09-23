@@ -30,13 +30,13 @@ void main() async {
   }
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/home',
+    initialRoute: '/',
     routes: {
-      '/': (context) => const Department_Greet(),
-      '/home': (context) => const Home(),
+      '/': (context) => const Home(),
       '/sign_in': (context) => const Sign_In(),
       '/register': (context) => const MyRegister(),
       '/registration_form': (context) => const Registration_Form(),
+      '/dept_greet': (context) => const Department_Greet(),
       '/forgot_pass': (context) => const ForgotPass(),
       '/verification': (context) => const Otp_Verify(),
       '/newpass': (context) => const New_Pass(),

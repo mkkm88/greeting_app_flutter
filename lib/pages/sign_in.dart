@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Sign_In extends StatefulWidget {
   const Sign_In({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _Sign_InState extends State<Sign_In> {
               padding: EdgeInsets.only(left: 40, top: 80),
               child: Text(
                 'Log In',
-                style: TextStyle(
+                style: GoogleFonts.ubuntu(
                   color: Colors.white,
                   fontSize: 33,
                 ),
@@ -86,6 +87,24 @@ class _Sign_InState extends State<Sign_In> {
                           )
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/forgot_pass');
+                            },
+                            child: Text(
+                              'Forgot Password',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff4c505b),
+                              ),
+                            )
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 40,
                     ),
@@ -94,7 +113,7 @@ class _Sign_InState extends State<Sign_In> {
                       children: [
                         Text(
                             'Sign In',
-                            style: TextStyle(
+                            style: GoogleFonts.ubuntu(
                               color: Color(0xff4c505b),
                               fontSize: 40,
                               fontWeight: FontWeight.w700,
@@ -129,36 +148,24 @@ class _Sign_InState extends State<Sign_In> {
                     SizedBox(
                       height: 40,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/register');
-                            },
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontSize: 18,
-                                color: Color(0xff4c505b),
-                              ),
-                            )
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/forgot_pass');
-                            },
-                            child: Text(
-                              'Forgot Password',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontSize: 18,
-                                color: Color(0xff4c505b),
-                              ),
-                            )
-                        ),
-                      ],
+                    Text(
+                        "Don't have an account?",
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 18
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/register');
+                        },
+                        child: Text(
+                          'Register Now',
+                          style: GoogleFonts.ubuntu(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        )
                     )
                   ],
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,22 +11,29 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        backgroundColor: Color(0xff4c505b),
-        title: const Text(
-            'Welcome',
-            style: TextStyle(
-              fontSize: 40,
-              color: Colors.white,
-            ),
-        ),
-        centerTitle: true,
-        elevation: 0,
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/login_page-0001.jpg'),
+          fit: BoxFit.cover,
+        )
       ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(
+            'Welcome',
+            style: GoogleFonts.ubuntu(
+              fontSize: 40,
+              color: Colors.redAccent,
+            ),
+          ),
+          centerTitle: true,
+          elevation: 0,
+        ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -37,21 +45,32 @@ class _HomeState extends State<Home> {
     ),
     const Divider(
     height: 90.0,
-    color: Colors.white70,
+    color: Colors.redAccent,
     ),
-    Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: const Text(
-      'Welcome to Maulana Azad National Urdu University',
+    Column(
+      children: [
+        Text(
+        'Welcome to',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.ubuntu(
+              color: Colors.grey[500],
+              letterSpacing: 2.0,
+              fontSize: 36.0,
+            ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          'Maulana Azad National Urdu University',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
+          style: GoogleFonts.ubuntu(
+            color: Colors.blueGrey[900],
             letterSpacing: 2.0,
             fontSize: 36.0,
-        )
-      ),
+          ),
+        ),
+      ],
     ),
       const SizedBox(height: 50),
               Row(
@@ -70,7 +89,8 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-          ],
+            ],
+          ),
         ),
       ),
     );

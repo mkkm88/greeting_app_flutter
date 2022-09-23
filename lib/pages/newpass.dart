@@ -13,31 +13,41 @@ class _New_PassState extends State<New_Pass> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          color: Colors.black,
+          color: Colors.grey[600],
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.keyboard_arrow_left),
+          icon: Icon(Icons.arrow_circle_left_outlined),
         ),
-        centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-            'New Password',
+            'Reset Password',
         style: TextStyle(
           color: Colors.black,
+          fontWeight: FontWeight.w600,
         ),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-                'Enter New Password',
+                'At least 8 characters, with uppercase and lowercase letters.',
             style: TextStyle(
-              color: Colors.black,
+                color: Colors.grey[700],
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+                'New Password',
+            style: TextStyle(
+              color: Colors.grey[600],
               fontWeight: FontWeight.w700,
               fontSize: 17,
              )
@@ -46,31 +56,8 @@ class _New_PassState extends State<New_Pass> {
               height: 10,
             ),
             TextField(
-              decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                  fillColor: Colors.grey.shade100,
-                  filled: true,
-                  hintText: '8 character at least',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  )
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-                'Confirm Password',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 17,
-                )
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextField(
+              obscuringCharacter: "*",
+              obscureText: true,
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
                   fillColor: Colors.grey.shade100,
@@ -82,6 +69,62 @@ class _New_PassState extends State<New_Pass> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   )
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+                'Confirm Password',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w700,
+                  fontSize: 17,
+                )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextField(
+              obscuringCharacter: "*",
+              obscureText: true,
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                  hintText: '********',
+                  hintStyle: TextStyle(
+                    fontSize: 20,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  )
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              width: 350,
+              height: 60,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/sign_in');
+                },
+                child: Text(
+                  'Continue',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
               ),
             ),
           ],

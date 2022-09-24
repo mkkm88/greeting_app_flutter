@@ -2,14 +2,14 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Registration_Form extends StatefulWidget {
-  const Registration_Form({Key? key}) : super(key: key);
+class RegistrationForm extends StatefulWidget {
+  const RegistrationForm({Key? key}) : super(key: key);
 
   @override
-  State<Registration_Form> createState() => _Registration_FormState();
+  State<RegistrationForm> createState() => _RegistrationFormState();
 }
 
-class _Registration_FormState extends State<Registration_Form> {
+class _RegistrationFormState extends State<RegistrationForm> {
 
   FocusNode searchFocusNode = FocusNode();
   FocusNode textFieldFocusNode = FocusNode();

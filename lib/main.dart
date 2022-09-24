@@ -35,7 +35,7 @@ void main() async {
       '/': (context) => const Home(),
       '/sign_in': (context) => const Sign_In(),
       '/register': (context) => const MyRegister(),
-      '/registration_form': (context) => const Registration_Form(),
+      '/registration_form': (context) => const RegistrationForm(),
       '/dept_greet': (context) => const Department_Greet(),
       '/forgot_pass': (context) => const ForgotPass(),
       '/verification': (context) => const Otp_Verify(),

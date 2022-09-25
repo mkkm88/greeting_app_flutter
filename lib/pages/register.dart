@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -222,21 +221,25 @@ class _MyRegisterState extends State<MyRegister> {
     );
   }
 
-  InputDecoration getDecoration(String fieldName) {
-    final border = OutlineInputBorder(
+
+
+
+}
+
+InputDecoration getDecoration(String fieldName) {
+  final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: const BorderSide(color: Colors.black));
-    return InputDecoration(
+      borderSide: BorderSide(color: Colors.grey.shade50));
+  return InputDecoration(
 
-        focusedBorder: border,
-        enabledBorder: border,
-        hintText: fieldName,
-        hintStyle: GoogleFonts.ubuntu(
-          color: Colors.white,
-        ),
-        border: border
-    );
-  }
-
-
+      focusedBorder: border,
+      enabledBorder: border,
+      hintText: fieldName,
+      fillColor: Colors.white.withOpacity(0.2),
+      filled: true,
+      hintStyle: GoogleFonts.ubuntu(
+        color: Colors.white,
+      ),
+      border: border
+  );
 }

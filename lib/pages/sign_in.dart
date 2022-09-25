@@ -131,7 +131,7 @@ class _Sign_InState extends State<Sign_In> {
                                     email: email,
                                     password: pass,
                                 );
-                                Navigator.pushNamed(context, '/registration_form');
+                                //Navigator.pushNamed(context, '/registration_form');
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'user-not-found') {
                                   print('No user found for that email.');

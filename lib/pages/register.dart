@@ -230,7 +230,7 @@ InputDecoration getDecoration(String fieldName) {
   final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: Colors.grey.shade50));
-  return InputDecoration(
+return InputDecoration(
 
       focusedBorder: border,
       enabledBorder: border,

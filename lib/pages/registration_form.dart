@@ -14,7 +14,6 @@ class RegistrationForm extends StatefulWidget {
 class _RegistrationFormState extends State<RegistrationForm> {
   FocusNode searchFocusNode = FocusNode();
   FocusNode textFieldFocusNode = FocusNode();
-  late SingleValueDropDownController _cnt;
   final _formKey = GlobalKey<FormState>();
 
   final dept = [
@@ -192,11 +191,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   String dropValue = 'btech';
 
-  @override
-  void initState() {
-    _cnt = SingleValueDropDownController();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
